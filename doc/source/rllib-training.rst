@@ -238,8 +238,10 @@ It also simplifies saving the trained agent. For example:
     last_checkpoint = analysis.get_last_checkpoint()
     # if there are multiple trials, select a specific trial or automatically
     # choose the best one according to a given metric
-    last_checkpoint = analysis.get_last_checkpoint(
-        metric="episode_reward_mean", mode="max"
+    best_checkpoint = analysis.get_best_checkpoint(
+        trial=tunerun.get_best_logdir('episode_reward_mean', 'max'),
+        metric='episode_reward_mean',
+        mode='max'
     )
 
 Loading and restoring a trained agent from a checkpoint is simple:
